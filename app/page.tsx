@@ -37,7 +37,10 @@ export default function Home() {
 
         {/* ── Nav ── */}
         <nav className="landing-nav">
-          <span className="landing-wordmark">LearnPlus</span>
+          <span className="landing-wordmark">
+            <Image src="/logo.png" alt="LearnPlus logo" width={24} height={24} className="landing-logo" />
+            LearnPlus
+          </span>
           <button
             className="landing-nav-cta"
             onClick={() => router.push('/access-code')}
@@ -179,10 +182,18 @@ const landingStyles = `
     flex-shrink: 0;
   }
   .landing-wordmark {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-family: var(--serif);
     font-size: 1.125rem;
     color: var(--ink);
     letter-spacing: -0.01em;
+  }
+  .landing-logo {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
   }
   .landing-nav-cta {
     display: flex;
