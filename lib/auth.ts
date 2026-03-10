@@ -3,7 +3,7 @@
  * Ensures study data integrity: one participant = one UID
  */
 
-import { getAdminFirestore } from './firebase';
+import { getAdminFirestore } from './firebase-admin';
 import { v4 as uuidv4 } from 'uuid';
 
 /**
@@ -73,9 +73,9 @@ export async function verifyAndActivateAccessCode(code: string): Promise<string>
 
       const codeData = codeSnapshot.data();
       
-      // Check if code is already used within the transaction
-      if (codeData?.used === true) {
-        throw new Error('Invalid or already used access code');
+      // If code is already used, return the existing uid (re-login)
+      if (codeData?.used === true && codeData?.uid) {
+        return codeData.uid as string;
       }
 
       // Generate UID for this participant

@@ -12,7 +12,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getAdminFirestore } from '@/lib/firebase';
+import { getAdminFirestore } from '@/lib/firebase-admin';
 
 interface HealthCheck {
   status: 'healthy' | 'degraded' | 'unhealthy';

@@ -13,7 +13,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getAdminFirestore } from '@/lib/firebase';
+import { getAdminFirestore } from '@/lib/firebase-admin';
 
 export async function POST(request: NextRequest) {
   try {

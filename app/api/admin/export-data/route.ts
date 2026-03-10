@@ -10,7 +10,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getAdminFirestore } from '@/lib/firebase';
+import { getAdminFirestore } from '@/lib/firebase-admin';
 import { validateAdminRequest } from '@/lib/admin-auth';
 import { checkRateLimit, getClientIP, createRateLimitResponse, RATE_LIMITS } from '@/lib/rate-limit';
 

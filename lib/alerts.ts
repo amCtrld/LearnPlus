@@ -15,7 +15,7 @@
  * - Webhook (TODO: Slack, Discord, etc.)
  */
 
-import { getAdminFirestore } from './firebase';
+import { getAdminFirestore } from './firebase-admin';
 
 export type AlertSeverity = 'info' | 'warning' | 'error' | 'critical';
 export type AlertCategory =

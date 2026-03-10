@@ -13,7 +13,7 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getAdminFirestore } from './firebase';
+import { getAdminFirestore } from './firebase-admin';
 
 export interface RequestLog {
   timestamp: Date;

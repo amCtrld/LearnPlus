@@ -12,8 +12,6 @@
  * - Error aggregation
  */
 
-import { getAdminFirestore } from './firebase';
-
 export type ErrorSeverity = 'low' | 'medium' | 'high' | 'critical';
 export type ErrorCategory = 
   | 'api_error'
@@ -67,16 +65,28 @@ export class AppError extends Error {
 }
 
 /**
- * Log error to Firestore
+ * Log error to Firestore via API route (safe for client components)
  */
 async function logErrorToFirestore(error: ErrorReport): Promise<void> {
   try {
-    const db = getAdminFirestore();
-    if (!db) return;
-    
-    await db.collection('errorLogs').add({
-      ...error,
-      timestamp: new Date(error.timestamp),
+    const baseUrl = typeof window !== 'undefined'
+      ? ''
+      : process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    await fetch(`${baseUrl}/api/log-event`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'error',
+        data: {
+          message: error.message,
+          category: error.category,
+          severity: error.severity,
+          stack: error.stack,
+          context: error.context,
+          url: error.url,
+          timestamp: error.timestamp.toISOString(),
+        },
+      }),
     });
   } catch (err) {
     console.error('Failed to log error to Firestore:', err);
