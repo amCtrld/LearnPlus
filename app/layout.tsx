@@ -11,22 +11,21 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: 'Research Calculus LMS',
   description: 'Interactive learning management system for calculus research study',
-  generator: 'v0.app',
+  openGraph: {
+    title: 'LearnPlus — AI-Assisted Calculus Learning',
+    description:
+      'A research platform exploring how AI-assisted tutoring impacts calculus learning outcomes and engagement.',
+    images: [{ url: '/og-image.png', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'LearnPlus — AI-Assisted Calculus Learning',
+    description:
+      'A research platform exploring how AI-assisted tutoring impacts calculus learning outcomes and engagement.',
+    images: ['/og-image.png'],
+  },
   icons: {
-    icon: [
-      {
-        url: '/icon-light-32x32.png',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-dark-32x32.png',
-        media: '(prefers-color-scheme: dark)',
-      },
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
+    icon: '/favicon.ico',
     apple: '/apple-icon.png',
   },
 }
