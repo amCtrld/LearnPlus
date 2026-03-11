@@ -9,6 +9,7 @@ import { useEffect, useState, useRef } from 'react';
 import { Loader2, Send, ArrowUp } from 'lucide-react';
 import { ChatMessage, Step, StudyMode } from '@/lib/types';
 import { trackAiInteraction } from '@/lib/logger';
+import { MathMessage } from './math-message';
 
 interface ChatPanelProps {
   uid: string;
@@ -217,6 +218,14 @@ export function ChatPanel({ uid, problemId, currentStep, mode }: ChatPanelProps)
           border-radius: 4px 4px 4px 2px;
         }
 
+        /* Markdown / KaTeX inside bubbles */
+        .bubble p { margin: 0 0 0.5em; }
+        .bubble p:last-child { margin-bottom: 0; }
+        .bubble ol, .bubble ul { margin: 0.25em 0; padding-left: 1.4em; }
+        .bubble strong { font-weight: 600; }
+        .bubble .katex-display { margin: 0.6em 0; overflow-x: auto; overflow-y: hidden; }
+        .bubble .katex { font-size: 1em; }
+
         /* Avatar dot */
         .avatar {
           width: 22px;
@@ -341,7 +350,9 @@ export function ChatPanel({ uid, problemId, currentStep, mode }: ChatPanelProps)
                 {msg.role === 'assistant' && (
                   <div className="avatar ai">AI</div>
                 )}
-                <div className={`bubble ${msg.role}`}>{msg.content}</div>
+                <div className={`bubble ${msg.role}`}>
+                  <MathMessage content={msg.content} />
+                </div>
               </div>
             ))
           )}

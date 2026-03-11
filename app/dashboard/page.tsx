@@ -13,6 +13,7 @@ import { PROBLEMS, getTotalProblems } from '@/lib/course-data';
 import { firestore } from '@/lib/firebase';
 import { doc, getDoc } from 'firebase/firestore';
 import { Session } from '@/lib/types';
+import { MathMessage } from '@/components/math-message';
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -180,7 +181,7 @@ export default function DashboardPage() {
                   {/* Info */}
                   <div className="dash-problem-info">
                     <p className="dash-problem-title">{problem.title}</p>
-                    <p className="dash-problem-expr">{problem.expression}</p>
+                    <div className="dash-problem-expr"><MathMessage content={problem.expression} /></div>
                   </div>
 
                   {/* Meta + action */}

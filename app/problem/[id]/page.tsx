@@ -15,6 +15,7 @@ import { getProblem, getNextProblemId } from '@/lib/course-data';
 import { ProblemStep } from '@/components/problem-step';
 import { SurveyModal } from '@/components/survey-modal';
 import { ChatPanel } from '@/components/chat-panel';
+import { MathMessage } from '@/components/math-message';
 import {
   logStepAttempt,
   startStepTimer,
@@ -674,7 +675,7 @@ export default function ProblemPage() {
             <div className="problem-header">
               <p className="problem-label">Calculus · Step-by-step</p>
               <h1 className="problem-title">{problem.title}</h1>
-              <p className="problem-expression">{problem.expression}</p>
+              <div className="problem-expression"><MathMessage content={problem.expression} /></div>
             </div>
 
             {/* Progress */}

@@ -8,6 +8,7 @@
 import { useState } from 'react';
 import { CheckCircle2, XCircle, HelpCircle, Loader2, ChevronDown, ChevronUp } from 'lucide-react';
 import { Step, StudyMode } from '@/lib/types';
+import { MathMessage } from './math-message';
 
 interface ProblemStepProps {
   step: Step;
@@ -250,7 +251,7 @@ export function ProblemStep({
       <div className="step-root">
 
         {/* Question */}
-        <p className="step-question">{step.question}</p>
+        <div className="step-question"><MathMessage content={step.question} /></div>
 
         {/* Answer input */}
         <div>
@@ -314,7 +315,7 @@ export function ProblemStep({
               {showHint ? <ChevronUp size={11} /> : <ChevronDown size={11} />}
             </button>
             {showHint && (
-              <div className="hint-box">{step.hint}</div>
+              <div className="hint-box"><MathMessage content={step.hint} /></div>
             )}
           </div>
         )}
